@@ -1,5 +1,7 @@
 class Template:
-    def __init__(self, template_uri=None, template_name=None):
+    def __init__(self,
+                 template_uri: str = None,
+                 template_name: str = None):
         self.template_uri = template_uri
         self.template_name = template_name
 

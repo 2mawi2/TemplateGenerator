@@ -1,12 +1,11 @@
 from unittest import TestCase
+from assertpy import assert_that
 
-from generator.generator import Generator
-
-
-class TestGeneration(TestCase):
-    pass
+from generator.generator import Generator, Template
 
 
 class TestGenerator(TestCase):
     def test_generate(self):
-        generator = Generator()
+        template = Template("testUri", "testName")
+        generator = Generator(template)
+        assert_that(generator.generate()).is_equal_to(True)
