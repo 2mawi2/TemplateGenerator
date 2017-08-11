@@ -1,8 +1,8 @@
 from unittest import TestCase
 from assertpy import assert_that
 
-from generator.FileIO import FileIO
-from tests import TestUtils
+from Generator.FileIO import FileIO
+from Tests import TestUtils
 
 
 class TestFileIO(TestCase):

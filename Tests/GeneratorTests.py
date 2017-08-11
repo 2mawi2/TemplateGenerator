@@ -1,10 +1,10 @@
 from unittest import TestCase
 from assertpy import assert_that
 
-from generator.FileIO import FileIO
-from generator.Generator import Generator
-from generator.Template import Template
-from tests import TestUtils
+from Generator.FileIO import FileIO
+from Generator.Generator import Generator
+from Generator.Template import Template
+from Tests import TestUtils
 
 
 class TestGenerator(TestCase):

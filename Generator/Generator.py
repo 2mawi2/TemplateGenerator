@@ -1,5 +1,5 @@
-from generator.FileIO import FileIO
-from generator.Template import Template
+from Generator.FileIO import FileIO
+from Generator.Template import Template
 
 
 class Generator:
