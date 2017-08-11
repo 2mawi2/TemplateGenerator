@@ -1,9 +1,5 @@
-class Template:
-    def __init__(self,
-                 template_uri: str = None,
-                 template_name: str = None):
-        self.template_uri = template_uri
-        self.template_name = template_name
+from generator.FileIO import FileIO
+from generator.Template import Template
 
 
 class Generator:
@@ -11,5 +7,13 @@ class Generator:
         self.template = template
 
     def generate(self):
-        if self.template is not None:
-            return True
+        uri = self.template.template_uri
+        name = self.template.template_name
+        output = self.template.output_uri
+
+        if not FileIO.exists(uri):
+            return
+
+        content = FileIO.read(uri)
+        content = content.replace("###", name)
+        FileIO.write(output, content)

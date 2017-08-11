@@ -16,3 +16,7 @@ class FileIO:
     def write(file: str, content: str):
         with open(file, "w+") as f:
             f.write(content)
+
+    @classmethod
+    def exists(cls, file):
+        return os.path.isfile(file)
