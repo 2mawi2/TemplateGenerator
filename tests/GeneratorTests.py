@@ -1,7 +1,7 @@
 from unittest import TestCase
 from assertpy import assert_that
 
-from generator.generator import Generator, Template
+from generator.Generator import Generator, Template
 
 
 class TestGenerator(TestCase):
