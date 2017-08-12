@@ -11,8 +11,23 @@ class TestGenerator(TestCase):
     def setUp(self):
         self.test_name = "Example"
         self.package_name = "ERP"
+        self.first_letter_upper_case_package_name = "Erp"
         self.lower_case_package_name = "erp"
-        self.test_name2 = "Example2"
+
+        self.tag_replacers: dict = {
+            "<#name#>": "Example",
+            "<#package#>": "ERP",
+            "<#packageLC#>": "erp",
+            "<#packageFLUC#>": "Erp",
+        }
+
+        self.tag_replacers2: dict = {
+            "<#name#>": "Example2",
+            "<#package#>": "ERP",
+            "<#packageLC#>": "erp",
+            "<#packageFLUC#>": "Erp",
+        }
+
         self.output_uri = TestUtils.output_uri(self.test_name)
         self.output_uri2 = TestUtils.output_uri(self.test_name) + "2"
         self.template = TestUtils.example_template_uri
@@ -23,40 +38,30 @@ class TestGenerator(TestCase):
         FileIO.delete(self.output_uri)
         FileIO.delete(self.output_uri2)
 
-    def test_generate_should_replace_name(self):
-        template = Template(self.template, self.output_uri, self.test_name, self.package_name)
+    def test_generate_should_replace_all_tag_replacers(self):
+        template = Template(self.template, self.output_uri, self.tag_replacers)
         generator = Generator([template])
         generator.generate()
         result = FileIO.read(self.output_uri)
-        assert_that(result).contains(f"{self.test_name}Repository")
-
-    def test_generate_should_replace_package(self):
-        template = Template(self.template, self.output_uri, self.test_name, self.package_name)
-        generator = Generator([template])
-        generator.generate()
-        result = FileIO.read(self.output_uri)
-        assert_that(result).contains(f"Persistence{self.package_name}")
-
-    def test_generate_should_replace_lower_case_package(self):
-        template = Template(self.template, self.output_uri, self.test_name, self.package_name)
-        generator = Generator([template])
-        generator.generate()
-        result = FileIO.read(self.output_uri)
-        assert_that(result).contains(f"{self.lower_case_package_name}-package-name")
+        self.assert_all_placeholders_are_replaced(result, self.tag_replacers)
 
     def test_generate_should_replace_name_multiple_files(self):
-        template = Template(self.template, self.output_uri, self.test_name, self.package_name)
-        template2 = Template(self.template, self.output_uri2, self.test_name2, self.package_name)
+        template = Template(self.template, self.output_uri, self.tag_replacers)
+        template2 = Template(self.template, self.output_uri2, self.tag_replacers2)
         generator = Generator([template, template2])
         generator.generate()
         result = FileIO.read(self.output_uri)
         result2 = FileIO.read(self.output_uri2)
+        self.assert_all_placeholders_are_replaced(result, self.tag_replacers)
+        self.assert_all_placeholders_are_replaced(result2, self.tag_replacers2)
 
-        assert_that(result).contains(f"{self.test_name}Repository")
-        assert_that(result2).contains(f"{self.test_name2}Repository")
+    @staticmethod
+    def assert_all_placeholders_are_replaced(result, placeholders: dict) -> bool:
+        for tr in placeholders.values():
+            assert_that(result).contains(tr)
 
     def test_generate_should_not_overwrite_existing_file(self):
-        template = Template(self.template, self.output_uri, self.test_name, self.package_name)
+        template = Template(self.template, self.output_uri, self.tag_replacers)
         FileIO.write(self.output_uri, "test")
         generator = Generator([template])
         generator.generate()

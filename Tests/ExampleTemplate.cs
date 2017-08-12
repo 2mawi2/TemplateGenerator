@@ -1,5 +1,7 @@
 using Persistence<#package#>.Repositories;
-//this is a comment to test the <#packageLC#>-package-name
+//this is a comment to test the <#packageLC#>-lower-case-package-name
+//this is a comment to test the <#packageFLUC#>-first-letter-upper-case-package-name
+
 public class <#name#>Repository : BaseRepository<<#name#>Entity, <#name#>, <#name#>.SortBy, <#name#>.FilterAttribute>, I<#name#>Repository
 {
     private readonly Lazy<Context> _context;
