@@ -1,6 +1,6 @@
-test_file_uri = "..\content\TestFile.cs"
-example_template_uri = "..\content\ExampleTemplate.cs"
+test_file_uri = "TestFile.cs"
+example_template_uri = "ExampleTemplate.cs"
 
 
 def output_uri(name):
-    return f"..\content\\{name}Repository.cs"
+    return f"{name}Repository.cs"

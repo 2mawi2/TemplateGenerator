@@ -8,15 +8,14 @@ class Generator:
 
     def generate(self):
         for t in self.templates:
-            uri = t.template_uri
-            name = t.template_name
-            output = t.output_uri
-            if not FileIO.exists(uri) or not name:
+            if not FileIO.exists(t.template_uri) or not t.template_name or FileIO.exists(t.output_uri):
                 return
-            self.__create_file_from_template(name, output, uri)
+            self.__create_file_from_template(t.template_name, t.package, t.output_uri, t.template_uri)
 
     @staticmethod
-    def __create_file_from_template(name, output, uri):
+    def __create_file_from_template(name, package, output, uri):
         content = FileIO.read(uri)
-        content = content.replace("###", name)
+        content = content.replace("<#name#>", name)
+        content = content.replace("<#package#>", package)
+        content = content.replace("<#packageLC#>", str.lower(package))
         FileIO.write(output, content)
