@@ -22,7 +22,7 @@ class TestGenerator(TestCase):
         test_name = "Example"
         output_uri = TestUtils.output_uri(test_name)
         template = Template(self.template, output_uri, test_name)
-        generator = Generator(template)
+        generator = Generator([template])
 
         generator.generate()
         result = FileIO.read(output_uri)
