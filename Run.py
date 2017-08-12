@@ -1,8 +1,8 @@
 from Generator.Generator import Generator
 from Generator.Template import Template
 
-output_uri = "..\content\ExampleRepository.cs"
-example_template_uri = "..\content\ExampleTemplate.cs"
+output_uri = "content\ExampleRepository.cs"
+example_template_uri = "content\ExampleTemplate.cs"
 
 
 def make_templates() -> [Template]:
