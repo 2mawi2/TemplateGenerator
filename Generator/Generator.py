@@ -8,13 +8,15 @@ class Generator:
 
     def generate(self):
         for t in self.templates:
-            if self.__is_invalid_template(t):
-                return
+            self.__validate_template(t)
             self.__create_file_from_template(t)
 
     @staticmethod
-    def __is_invalid_template(t: Template):
-        return not FileIO.exists(t.template_uri) or not t.template_uri or FileIO.exists(t.output_uri)
+    def __validate_template(t: Template):
+        if not FileIO.exists(t.template_uri):
+            raise FileNotFoundError(t.template_uri)
+        if FileIO.exists(t.output_uri):
+            raise FileExistsError(t.output_uri)
 
     @staticmethod
     def __create_file_from_template(t: Template):

@@ -16,6 +16,7 @@ class TestGenerator(TestCase):
 
         self.tag_replacers: dict = {
             "<#name#>": "Example",
+            "<#nameLC#>": "example",
             "<#package#>": "ERP",
             "<#packageLC#>": "erp",
             "<#packageFLUC#>": "Erp",
@@ -23,6 +24,7 @@ class TestGenerator(TestCase):
 
         self.tag_replacers2: dict = {
             "<#name#>": "Example2",
+            "<#nameLC#>": "example2",
             "<#package#>": "ERP",
             "<#packageLC#>": "erp",
             "<#packageFLUC#>": "Erp",
@@ -61,10 +63,16 @@ class TestGenerator(TestCase):
             assert_that(result).does_not_contain(key)
             assert_that(result).contains(value)
 
-    def test_generate_should_not_overwrite_existing_file(self):
+    def test_generate_should_raise_error_if_file_exists(self):
         template = Template(self.template, self.output_uri, self.tag_replacers)
         FileIO.write(self.output_uri, "test")
         generator = Generator([template])
-        generator.generate()
-        result = FileIO.read(self.output_uri)
-        assert_that(result).contains(f"test")
+        with self.assertRaises(FileExistsError):
+            generator.generate()
+
+    def test_generate_should_raise_error_if_template_not_exists(self):
+        template = Template("wronguri", self.output_uri, self.tag_replacers)
+        FileIO.write(self.output_uri, "test")
+        generator = Generator([template])
+        with self.assertRaises(FileNotFoundError):
+            generator.generate()
