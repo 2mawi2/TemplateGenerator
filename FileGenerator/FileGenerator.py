@@ -1,8 +1,8 @@
-from Generator.FileIO import FileIO
-from Generator.Template import Template
+from FileGenerator.FileIO import FileIO
+from FileGenerator.Template import Template
 
 
-class Generator:
+class FileGenerator:
     def __init__(self, templates: [Template]):
         self.templates = templates
 

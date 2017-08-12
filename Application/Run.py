@@ -1,9 +1,10 @@
 from Application.TemplateFactory import TemplateFactory
 from Application.TemplateType import TemplateType
-from Generator.Generator import Generator
+from FileGenerator.FileGenerator import FileGenerator
+from Utils import Values
 
-templateFactory = TemplateFactory(TemplateType.CRUD)
-templates = templateFactory.create("ERP", "ProductElementPrice")
+templateFactory = TemplateFactory(TemplateType.SEARCHABLE, Values.default_base_uri)
+templates = templateFactory.create("CRM", "ProductElementPrice")
 
-generator = Generator(templates)
+generator = FileGenerator(templates)
 generator.generate()

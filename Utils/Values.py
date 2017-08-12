@@ -1,5 +1,7 @@
 from Utils import StringUtils
 
+default_base_uri = "C:\\Users\\Marius\\Source\\Repos\\WaWi_Backend\\"
+
 
 def default_replacers(entity_name, package_name):
     return {

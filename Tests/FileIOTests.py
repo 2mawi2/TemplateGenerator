@@ -1,7 +1,7 @@
 from unittest import TestCase
 from assertpy import assert_that
 
-from Generator.FileIO import FileIO
+from FileGenerator.FileIO import FileIO
 from Tests import TestUtils
 
 

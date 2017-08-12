@@ -1,11 +1,13 @@
-from Application import WaWiUriFactory, Templates
+from Application import Templates
 from Application.TemplateType import TemplateType
-from Generator.Template import Template
+from Application.WaWiUriFactory import WaWiUriFactory
+from FileGenerator.Template import Template
 from Utils import Values
 
 
 class TemplateFactory:
-    def __init__(self, template_type) -> None:
+    def __init__(self, template_type, base_path) -> None:
+        self.base_path = base_path
         self.template_type = template_type
 
     def create(self, package_name, entity_name) -> [Template]:
@@ -15,25 +17,45 @@ class TemplateFactory:
             return self.__create_searchable_templates(package_name, entity_name)
 
     def __create_crud_templates(self, package_name, entity_name) -> [Template]:
-        fac = WaWiUriFactory
+        fac = WaWiUriFactory(self.base_path)
+        dr = Values.default_replacers
         templates = [
             Template(Templates.crud_controller_template,
-                     WaWiUriFactory.controller(package_name, entity_name),
-                     Values.default_replacers(entity_name, package_name)),
+                     fac.controller(package_name, entity_name),
+                     dr(entity_name, package_name)),
             Template(Templates.icrud_controller_template,
-                     WaWiUriFactory.i_controller(package_name, entity_name),
-                     Values.default_replacers(entity_name, package_name)),
+                     fac.i_controller(package_name, entity_name),
+                     dr(entity_name, package_name)),
             Template(Templates.crud_repository_template,
-                     WaWiUriFactory.repo(package_name, entity_name),
-                     Values.default_replacers(entity_name, package_name)),
+                     fac.repo(package_name, entity_name),
+                     dr(entity_name, package_name)),
             Template(Templates.icrud_repository_template,
-                     WaWiUriFactory.i_repo(package_name, entity_name),
-                     Values.default_replacers(entity_name, package_name)),
+                     fac.i_repo(package_name, entity_name),
+                     dr(entity_name, package_name)),
             Template(Templates.crud_api_controller_template,
-                     WaWiUriFactory.admin_api_controller(entity_name),
-                     Values.default_replacers(entity_name, package_name)),
+                     fac.admin_api_controller(entity_name),
+                     dr(entity_name, package_name)),
         ]
         return templates
 
     def __create_searchable_templates(self, package_name, entity_name) -> [Template]:
-        pass
+        fac = WaWiUriFactory(self.base_path)
+        dr = Values.default_replacers
+        templates = [
+            Template(Templates.searchable_controller_template,
+                     fac.controller(package_name, entity_name),
+                     dr(entity_name, package_name)),
+            Template(Templates.isearchable_controller_template,
+                     fac.i_controller(package_name, entity_name),
+                     dr(entity_name, package_name)),
+            Template(Templates.searchable_repository_template,
+                     fac.repo(package_name, entity_name),
+                     dr(entity_name, package_name)),
+            Template(Templates.isearchable_repository_template,
+                     fac.i_repo(package_name, entity_name),
+                     dr(entity_name, package_name)),
+            Template(Templates.searchable_api_controller_template,
+                     fac.admin_api_controller(entity_name),
+                     dr(entity_name, package_name)),
+        ]
+        return templates

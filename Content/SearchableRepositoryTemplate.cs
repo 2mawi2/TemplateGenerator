@@ -12,29 +12,28 @@ using Persistence.Repositories;
 
 namespace Persistence<#package#>.Repositories
 {
-    public class <#name#>Repository : SearchableRepository<<#name#>Entity, <#name#>, <#name#>.SortBy, <#name#>.FilterAttribute>,
+    public class <#name#>Repository : SearchableRepository<<#name#>Entity, <#name#>,
+            <#name#>.SortBy, <#name#>.FilterAttribute>,
         I<#name#>Repository
     {
         private readonly Lazy<WaWiContext> _context;
         protected override DbContext Context => _context.Value;
 
-        public <#name#>Repository(Lazy<WaWiContext> context, IMapper mapper) : base(mapper)
+        public <#name#>Repository(Lazy<WaWiContext> context, IMapper mapper,
+            ICurrentUser currentUser) : base(mapper, currentUser)
         {
             _context = context;
         }
 
-        protected override SearchQuery<<#name#>Entity, <#name#>, <#name#>.SortBy, <#name#>.FilterAttribute> CreateSearchQuery()
+        protected override SearchQuery<<#name#>Entity, <#name#>, <#name#>.SortBy,
+            <#name#>.FilterAttribute> CreateSearchQuery()
         {
             return new <#name#>SearchQuery(Context, Mapper);
         }
-
-        public async Task<IEnumerable<<#name#>>> GetByContactAsync(int contactId)
-        {
-            return await Find(i => i.Contact.ContactId.Equals(contactId));
-        }
     }
 
-    public class <#name#>SearchQuery : SearchQuery<<#name#>Entity, <#name#>, <#name#>.SortBy, <#name#>.FilterAttribute>
+    public class <#name#>SearchQuery : SearchQuery<<#name#>Entity, <#name#>,
+        <#name#>.SortBy, <#name#>.FilterAttribute>
     {
         public static readonly FilterDefinitionGroup<<#name#>Entity, <#name#>.FilterAttribute>
             FilterDefinitions =

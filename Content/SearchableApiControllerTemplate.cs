@@ -11,10 +11,10 @@ namespace AdminApi.Controllers.<#package#>
     /// <#name#> related methods.
     /// </summary>
     [Authorize(Policy = Permissions.<#packageFLUC#><#name#>View)]
-    [Route("api/v1/<#packageLC#>/addresses")]
+    [Route("api/v1/<#packageLC#>/<#nameLC#>")]
     public class <#name#>ApiController : SearchableApiController<<#name#>, <#name#>.SortBy, <#name#>.FilterAttribute>
     {
-        public <#name#>ApiController(I<#packageFLUC#> <#packageLC#>) : base(<#packageLC#>.Get<#name#>es(), Permissions.<#packageFLUC#><#name#>Edit)
+        public <#name#>ApiController(I<#packageFLUC#> <#packageLC#>) : base(<#packageLC#>.Get<#name#>s(), Permissions.<#packageFLUC#><#name#>Edit)
         {
         }
     }

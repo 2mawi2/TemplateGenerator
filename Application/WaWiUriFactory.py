@@ -1,28 +1,21 @@
-output_uri = "..\\Content\ExampleRepository.cs"
-example_template_uri = "..\\Content\ExampleTemplate.cs"
+class WaWiUriFactory:
+    def __init__(self, base_uri) -> None:
+        self.base_uri = base_uri
 
-base_uri = "C:\\Users\\Marius\\Source\\Repos\\WaWi_Backend\\"
+    def controller(self, project, name):
+        return f'{self.base_uri}{project}\\Controllers\\{self.filename(name, "Controller")}'
 
+    def i_controller(self, project, name):
+        return f'{self.base_uri}{project}\\I{self.filename(name, "Controller")}'
 
-def controller(project, name):
-    return f'{base_uri}{project}\\Controllers\\{filename(name, "Controller")}'
+    def repo(self, project, name):
+        return f'{self.base_uri}Persistence{project}\\Repositories\\{self.filename(name, "Repository")}'
 
+    def i_repo(self, project, name):
+        return f'{self.base_uri}Persistence{project}\\I{self.filename(name, "Repository")}'
 
-def i_controller(project, name):
-    return f'{base_uri}{project}\\I{filename(name, "Controller")}'
+    def admin_api_controller(self, name):
+        return f'{self.base_uri}AdminApi\\Controllers\\CRM\\{self.filename(name, "ApiController")}'
 
-
-def repo(project, name):
-    return f'{base_uri}Persistence{project}\\Repositories\\{filename(name, "Repository")}'
-
-
-def i_repo(project, name):
-    return f'{base_uri}Persistence{project}\\I{filename(name, "Repository")}'
-
-
-def admin_api_controller(name):
-    return f'{base_uri}AdminApi\\Controllers\\{filename(name, "ApiController")}'
-
-
-def filename(name, postfix):
-    return f"{name}{postfix}.cs"
+    def filename(self, name, postfix):
+        return f"{name}{postfix}.cs"

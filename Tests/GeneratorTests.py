@@ -1,9 +1,9 @@
 from unittest import TestCase
 from assertpy import assert_that
 
-from Generator.FileIO import FileIO
-from Generator.Generator import Generator
-from Generator.Template import Template
+from FileGenerator.FileIO import FileIO
+from FileGenerator.FileGenerator import FileGenerator
+from FileGenerator.Template import Template
 from Tests import TestUtils
 
 
@@ -42,7 +42,7 @@ class TestGenerator(TestCase):
 
     def test_generate_should_replace_all_tag_replacers(self):
         template = Template(self.template, self.output_uri, self.tag_replacers)
-        generator = Generator([template])
+        generator = FileGenerator([template])
         generator.generate()
         result = FileIO.read(self.output_uri)
         self.assert_all_placeholders_are_replaced(result, self.tag_replacers)
@@ -50,7 +50,7 @@ class TestGenerator(TestCase):
     def test_generate_should_replace_name_multiple_files(self):
         template = Template(self.template, self.output_uri, self.tag_replacers)
         template2 = Template(self.template, self.output_uri2, self.tag_replacers2)
-        generator = Generator([template, template2])
+        generator = FileGenerator([template, template2])
         generator.generate()
         result = FileIO.read(self.output_uri)
         result2 = FileIO.read(self.output_uri2)
@@ -66,13 +66,13 @@ class TestGenerator(TestCase):
     def test_generate_should_raise_error_if_file_exists(self):
         template = Template(self.template, self.output_uri, self.tag_replacers)
         FileIO.write(self.output_uri, "test")
-        generator = Generator([template])
+        generator = FileGenerator([template])
         with self.assertRaises(FileExistsError):
             generator.generate()
 
     def test_generate_should_raise_error_if_template_not_exists(self):
         template = Template("wronguri", self.output_uri, self.tag_replacers)
         FileIO.write(self.output_uri, "test")
-        generator = Generator([template])
+        generator = FileGenerator([template])
         with self.assertRaises(FileNotFoundError):
             generator.generate()
