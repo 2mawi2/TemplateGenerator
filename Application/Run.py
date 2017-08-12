@@ -1,4 +1,6 @@
-from Generator.Generator import Generator
+from Application.TemplateFactory import TemplateFactory
+from Application.TemplateType import TemplateType
 
-generator = Generator(make_templates())
-generator.generate()
+templateFactory = TemplateFactory(TemplateType.CRUD)
+templates = templateFactory.create("ERP", "ProductElementPrice")
+print(templates)
