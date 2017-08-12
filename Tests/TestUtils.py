@@ -3,4 +3,4 @@ example_template_uri = "..\content\ExampleTemplate.cs"
 
 
 def output_uri(name):
-    return f"..\content\\{name}Template.cs"
+    return f"..\content\\{name}Repository.cs"

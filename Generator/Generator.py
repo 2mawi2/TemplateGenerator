@@ -13,10 +13,10 @@ class Generator:
             output = t.output_uri
             if not FileIO.exists(uri) or not name:
                 return
-            self.create_file_from_template(name, output, uri)
+            self.__create_file_from_template(name, output, uri)
 
     @staticmethod
-    def create_file_from_template(name, output, uri):
+    def __create_file_from_template(name, output, uri):
         content = FileIO.read(uri)
         content = content.replace("###", name)
         FileIO.write(output, content)

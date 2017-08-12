@@ -8,6 +8,8 @@ example_template_uri = "..\content\ExampleTemplate.cs"
 def make_templates() -> [Template]:
     """
     Add here the templates you need
+    A Template will need to be located in the Content Directory
+    Placeholders syntax is: ###
     """
     template = Template(example_template_uri, output_uri, "Example")
     return [template]
