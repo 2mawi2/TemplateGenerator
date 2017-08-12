@@ -15,7 +15,8 @@ namespace Persistence<#package#>.Repositories
         private readonly Lazy<WaWiContext> _context;
         protected override DbContext Context => _context.Value;
 
-        public <#name#>Repository(Lazy<WaWiContext> context, IMapper mapper) : base(mapper, currentUser)
+        public <#name#>Repository(Lazy<WaWiContext> context, IMapper mapper
+            ICurrentUser currentUser) : base(mapper, currentUser)
         {
             _context = context;
         }

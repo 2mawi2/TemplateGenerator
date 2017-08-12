@@ -1,6 +1,7 @@
 using Persistence<#package#>.Repositories;
 //this is a comment to test the <#packageLC#>-lower-case-package-name
 //this is a comment to test the <#packageFLUC#>-first-letter-upper-case-package-name
+//this is a comment to test the <#nameLC#>-first-letter-upper-case-name
 
 public class <#name#>Repository : BaseRepository<<#name#>Entity, <#name#>, <#name#>.SortBy, <#name#>.FilterAttribute>, I<#name#>Repository
 {

@@ -11,7 +11,7 @@ namespace AdminApi.Controllers.<#package#>
     /// <#name#> related methods.
     /// </summary>
     [Authorize(Policy = Permissions.Erp<#name#>View)]
-    [Route("api/v1/<#packageLC#>/contents")]
+    [Route("api/v1/<#packageLC#>/<#nameLC#>")]
     public class <#name#>ApiController : CrudApiController<<#name#>>
     {
         private I<#name#>Controller _contentController;

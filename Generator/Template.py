@@ -15,11 +15,5 @@ class Template:
         self.output_uri = output_uri
         self.replacers = replacers
 
-    @staticmethod
-    def default_replacers(entity_name, package_name):
-        return {
-            "<#name#>": StringUtils.upper_first_letter(entity_name),
-            "<#package#>": str.upper(package_name),
-            "<#packageLC#>": str.lower(package_name),
-            "<#packageFLUC#>": str.capitalize(package_name)
-        }
+    def __str__(self) -> str:
+        return f"{self.template_uri}, {self.output_uri}, {self.replacers},"

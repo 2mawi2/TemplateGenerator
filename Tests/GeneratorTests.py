@@ -57,8 +57,9 @@ class TestGenerator(TestCase):
 
     @staticmethod
     def assert_all_placeholders_are_replaced(result, placeholders: dict) -> bool:
-        for tr in placeholders.values():
-            assert_that(result).contains(tr)
+        for key, value in placeholders.items():
+            assert_that(result).does_not_contain(key)
+            assert_that(result).contains(value)
 
     def test_generate_should_not_overwrite_existing_file(self):
         template = Template(self.template, self.output_uri, self.tag_replacers)

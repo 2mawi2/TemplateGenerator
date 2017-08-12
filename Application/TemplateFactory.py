@@ -1,6 +1,7 @@
 from Application import WaWiUriFactory, Templates
 from Application.TemplateType import TemplateType
 from Generator.Template import Template
+from Utils import Values
 
 
 class TemplateFactory:
@@ -18,19 +19,19 @@ class TemplateFactory:
         templates = [
             Template(Templates.crud_controller_template,
                      WaWiUriFactory.controller(package_name, entity_name),
-                     Template.default_replacers(entity_name, package_name)),
+                     Values.default_replacers(entity_name, package_name)),
             Template(Templates.icrud_controller_template,
                      WaWiUriFactory.i_controller(package_name, entity_name),
-                     Template.default_replacers(entity_name, package_name)),
+                     Values.default_replacers(entity_name, package_name)),
             Template(Templates.crud_repository_template,
                      WaWiUriFactory.repo(package_name, entity_name),
-                     Template.default_replacers(entity_name, package_name)),
+                     Values.default_replacers(entity_name, package_name)),
             Template(Templates.icrud_repository_template,
                      WaWiUriFactory.i_repo(package_name, entity_name),
-                     Template.default_replacers(entity_name, package_name)),
+                     Values.default_replacers(entity_name, package_name)),
             Template(Templates.crud_api_controller_template,
                      WaWiUriFactory.admin_api_controller(entity_name),
-                     Template.default_replacers(entity_name, package_name)),
+                     Values.default_replacers(entity_name, package_name)),
         ]
         return templates
 
