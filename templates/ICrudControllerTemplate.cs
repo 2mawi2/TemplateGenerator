@@ -5,6 +5,7 @@ namespace <#package#>
 {
     public interface I<#name#>Controller : ICrudController<<#name#>>
     {
+
     }
 }
 
