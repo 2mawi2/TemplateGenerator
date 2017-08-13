@@ -14,7 +14,7 @@ crud_api_controller_template = "..\\..\\templates\CrudApiControllerTemplate.cs"
 searchable_api_controller_template = "..\\..\\templates\SearchableApiControllerTemplate.cs"
 
 
-def default_replacers(entity_name, package_name):
+def default_replacers(entity_name, package_name) -> dict:
     return {
         "<#name#>": string_utils.upper_first_letter(entity_name),
         "<#nameLC#>": string_utils.lower_first_letter(entity_name),
