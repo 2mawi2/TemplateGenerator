@@ -1,6 +1,8 @@
 from unittest import TestCase
+
 from assertpy import assert_that
-from gen.file_generator.template import Template
+
+from gen.model.template import Template
 
 
 class TestTemplateFactory(TestCase):

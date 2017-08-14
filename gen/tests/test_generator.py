@@ -4,8 +4,8 @@ from assertpy import assert_that
 
 from gen.file_generator.file_generator import FileGenerator
 from gen.file_generator.file_io import FileIO
-from gen.file_generator.template import Template
-from gen.tests import utils
+from gen.model.template import Template
+from gen.utils import test_utils
 
 
 class TestGenerator(TestCase):
@@ -31,9 +31,9 @@ class TestGenerator(TestCase):
             "<#packageFLUC#>": "Erp",
         }
 
-        self.output_uri = utils.output_uri(self.test_name)
-        self.output_uri2 = utils.output_uri(self.test_name) + "2"
-        self.template = utils.example_template_uri
+        self.output_uri = test_utils.output_uri(self.test_name)
+        self.output_uri2 = test_utils.output_uri(self.test_name) + "2"
+        self.template = test_utils.example_template_uri
         self.template_backup = FileIO.read(self.template)
 
     def tearDown(self):

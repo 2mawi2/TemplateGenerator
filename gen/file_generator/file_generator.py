@@ -1,5 +1,5 @@
 from gen.file_generator.file_io import FileIO
-from gen.file_generator.template import Template
+from gen.model.template import Template
 
 
 class FileGenerator:

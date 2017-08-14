@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from assertpy import assert_that
 
-from gen.application.wawi_uri_factory import WaWiUriFactory
+from gen.application.factories.wawi_uri_factory import WaWiUriFactory
 from gen.utils import values
 
 
