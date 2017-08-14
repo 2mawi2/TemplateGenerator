@@ -1,6 +1,4 @@
 .idea/
-templates/
-!ExampleTemplate.cs
 gen/__pycache__/
 gen/application/__pycache__/
 gen/file_generator/__pycache__/
