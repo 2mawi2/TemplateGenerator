@@ -8,14 +8,27 @@ class WaWiUriFactory:
     def i_controller(self, project, name):
         return f'{self.base_uri}{project}\\I{self.filename(name, "Controller")}'
 
+    def test_controller(self, project, name):
+        return f'{self.base_uri}Tests\\{project}\\{project}\\Controllers\\{self.filename(name, "ControllerTests")}'
+
     def repo(self, project, name):
         return f'{self.base_uri}Persistence{project}\\Repositories\\{self.filename(name, "Repository")}'
 
     def i_repo(self, project, name):
         return f'{self.base_uri}Persistence{project}\\I{self.filename(name, "Repository")}'
 
-    def admin_api_controller(self, name):
-        return f'{self.base_uri}AdminApi\\Controllers\\CRM\\{self.filename(name, "ApiController")}'
+    def api_controller(self, project, name):
+        return f'{self.base_uri}AdminApi\\Controllers\\{project}\\{self.filename(name, "ApiController")}'
+
+    def test_api_controller(self, project, name):
+        return f'{self.base_uri}Tests\\Api\\AdminApi\\{project}\\{self.filename(name, "ApiControllerTests")}'
+        pass
+
+    def test_repository(self, project, name):
+        return f'{self.base_uri}Tests\\{project}\\Persistence{project}\\Repositories\\{self.filename(name, "RepositoryTests")}'
+        pass
+
 
     def filename(self, name, postfix):
         return f"{name}{postfix}.cs"
+

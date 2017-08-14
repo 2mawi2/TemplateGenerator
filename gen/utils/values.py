@@ -12,7 +12,9 @@ searchable_controller_template = "..\\..\\templates\SearchableControllerTemplate
 isearchable_controller_template = "..\\..\\templates\ISearchableControllerTemplate.cs"
 crud_api_controller_template = "..\\..\\templates\CrudApiControllerTemplate.cs"
 searchable_api_controller_template = "..\\..\\templates\SearchableApiControllerTemplate.cs"
-
+test_controller_template = "..\\..\\templates\ControllerTestTemplate.cs"
+test_repository_template = "..\\..\\templates\RepositoryTestTemplate.cs"
+test_api_controller_template = "..\\..\\templates\ApiControllerTestTemplate.cs"
 
 def default_replacers(entity_name, package_name) -> dict:
     return {

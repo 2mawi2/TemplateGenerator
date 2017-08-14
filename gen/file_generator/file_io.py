@@ -17,6 +17,6 @@ class FileIO:
         with open(file, "w+") as f:
             f.write(content)
 
-    @classmethod
-    def exists(cls, file):
+    @staticmethod
+    def exists(file):
         return os.path.isfile(file)

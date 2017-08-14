@@ -3,8 +3,8 @@ from gen.application.template_type import TemplateType
 from gen.file_generator.file_generator import FileGenerator
 from gen.utils import values
 
-templateFactory = TemplateFactory(TemplateType.CRUD, values.default_base_uri)
-templates = templateFactory.create("CRM", "ProductElementPrice")
+templateFactory = TemplateFactory(TemplateType.SEARCHABLE, values.default_base_uri)
+templates = templateFactory.create("ERP", "ProductElementPrice")
 
 generator = FileGenerator(templates)
 generator.generate()

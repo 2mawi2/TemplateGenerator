@@ -33,6 +33,24 @@ class TestFilename(TestCase):
 
     def test_api_controller(self):
         fac = WaWiUriFactory(values.default_base_uri)
-        uri = fac.admin_api_controller("Customer")
+        uri = fac.api_controller("CRM", "Customer")
         expected = f"{values.default_base_uri}AdminApi\\Controllers\\CRM\\CustomerApiController.cs"
+        assert_that(uri).is_equal_to(expected)
+
+    def test_test_controller(self):
+        fac = WaWiUriFactory(values.default_base_uri)
+        uri = fac.test_controller("CRM", "Customer")
+        expected = f"{values.default_base_uri}Tests\\CRM\\CRM\\Controllers\\CustomerControllerTests.cs"
+        assert_that(uri).is_equal_to(expected)
+
+    def test_test_api_controller(self):
+        fac = WaWiUriFactory(values.default_base_uri)
+        uri = fac.test_api_controller("CRM", "Customer")
+        expected = f"{values.default_base_uri}Tests\\Api\\AdminApi\\CRM\\CustomerApiControllerTests.cs"
+        assert_that(uri).is_equal_to(expected)
+
+    def test_test_repository(self):
+        fac = WaWiUriFactory(values.default_base_uri)
+        uri = fac.test_repository("CRM", "Customer")
+        expected = f"{values.default_base_uri}Tests\\CRM\\PersistenceCRM\\Repositories\\CustomerRepositoryTests.cs"
         assert_that(uri).is_equal_to(expected)
