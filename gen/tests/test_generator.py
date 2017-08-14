@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from assertpy import assert_that
 
-from gen.file_generator.file_generator import FileGenerator
-from gen.file_generator.file_io import FileIO
+from gen.app.file_generator.file_generator import FileGenerator
+from gen.app.file_generator.file_io import FileIO
 from gen.model.template import Template
 from gen.utils import test_utils
 

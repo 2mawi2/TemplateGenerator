@@ -1,5 +1,5 @@
 .idea/
 gen/__pycache__/
-gen/application/__pycache__/
+gen/app/__pycache__/
 gen/file_generator/__pycache__/
 gen/utils/__pycache__/

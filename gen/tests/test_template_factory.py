@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from assertpy import assert_that
 
-from gen.application.factories.template_factory import TemplateFactory
-from gen.application.factories.wawi_uri_factory import WaWiUriFactory
+from gen.app.factories.template_factory import TemplateFactory
+from gen.app.factories.wawi_uri_factory import WaWiUriFactory
 from gen.model.template import Template
 from gen.model.template_type import TemplateType
 from gen.utils import values
