@@ -22,13 +22,10 @@ class WaWiUriFactory:
 
     def test_api_controller(self, project, name):
         return f'{self.base_uri}Tests\\Api\\AdminApi\\{project}\\{self.filename(name, "ApiControllerTests")}'
-        pass
 
     def test_repository(self, project, name):
-        return f'{self.base_uri}Tests\\{project}\\Persistence{project}\\Repositories\\{self.filename(name, "RepositoryTests")}'
-        pass
-
+        return f'{self.base_uri}Tests\\{project}\\Persistence{project}\\Repositories\\' \
+               f'{self.filename(name, "RepositoryTests")}'
 
     def filename(self, name, postfix):
         return f"{name}{postfix}.cs"
-

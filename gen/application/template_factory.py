@@ -23,7 +23,7 @@ class TemplateFactory:
             return self.__create_searchable_templates(package_name, entity_name)
 
     def __create_crud_templates(self, package_name, entity_name) -> [Template]:
-        return self.__generate_templates(package_name, entity_name, [
+        return self.__map_templates(package_name, entity_name, [
             (values.crud_controller_template, self.fac.controller),
             (values.icrud_controller_template, self.fac.i_controller),
             (values.test_controller_template, self.fac.test_controller),
@@ -35,7 +35,7 @@ class TemplateFactory:
         ])
 
     def __create_searchable_templates(self, package_name, entity_name) -> [Template]:
-        return self.__generate_templates(package_name, entity_name, [
+        return self.__map_templates(package_name, entity_name, [
             (values.searchable_controller_template, self.fac.controller),
             (values.isearchable_controller_template, self.fac.i_controller),
             (values.test_controller_template, self.fac.test_controller),
@@ -46,5 +46,5 @@ class TemplateFactory:
             (values.test_api_controller_template, self.fac.test_api_controller),
         ])
 
-    def __generate_templates(self, package_name: str, entity_name: str, template_output_tuple_list: [(str,)]):
+    def __map_templates(self, package_name: str, entity_name: str, template_output_tuple_list: [(str,)]):
         return [Template(t, o(package_name, entity_name), self.replacers) for t, o in template_output_tuple_list]
