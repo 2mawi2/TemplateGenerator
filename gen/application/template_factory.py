@@ -46,5 +46,5 @@ class TemplateFactory:
             (values.test_api_controller_template, self.fac.test_api_controller),
         ])
 
-    def __map_templates(self, package_name: str, entity_name: str, template_output_tuple_list: [(str,)]):
+    def __map_templates(self, package_name: str, entity_name: str, template_output_tuple_list: [(str,)]) -> [Template]:
         return [Template(t, o(package_name, entity_name), self.replacers) for t, o in template_output_tuple_list]

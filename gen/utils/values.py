@@ -16,6 +16,7 @@ test_controller_template = "..\\..\\templates\ControllerTestTemplate.cs"
 test_repository_template = "..\\..\\templates\RepositoryTestTemplate.cs"
 test_api_controller_template = "..\\..\\templates\ApiControllerTestTemplate.cs"
 
+
 def default_replacers(entity_name, package_name) -> dict:
     return {
         "<#name#>": string_utils.upper_first_letter(entity_name),
