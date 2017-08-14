@@ -13,4 +13,4 @@ class Template:
         self.replacers = replacers
 
     def __str__(self) -> str:
-        return f"{self.template_uri}, {self.output_uri}, {self.replacers},"
+        return f"{self.template_uri}, {self.output_uri}, {self.replacers}"
