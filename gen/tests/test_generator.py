@@ -64,12 +64,13 @@ class TestGenerator(TestCase):
             assert_that(result).does_not_contain(key)
             assert_that(result).contains(value)
 
-    def test_generate_should_raise_error_if_file_exists(self):
+    def test_generate_should_not_override_file(self):
         template = Template(self.template, self.output_uri, self.tag_replacers)
         FileIO.write(self.output_uri, "test")
         generator = FileGenerator([template])
-        with self.assertRaises(FileExistsError):
-            generator.generate()
+        generator.generate()
+        result = FileIO.read(self.output_uri)
+        assert_that(result).is_equal_to("test")
 
     def test_generate_should_raise_error_if_template_not_exists(self):
         template = Template("wronguri", self.output_uri, self.tag_replacers)
