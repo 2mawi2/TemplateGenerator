@@ -17,7 +17,7 @@ class FileGenerator:
         if not FileIO.exists(t.template_uri):
             raise FileNotFoundError(f"no such template: {t.template_uri}")
         if FileIO.exists(t.output_uri):
-            raise FileExistsError(f"template: {t.output_uri} already exsists")
+            raise FileExistsError(f"template: {t.output_uri} already exists")
 
     @staticmethod
     def __create_file_from_template(t: Template) -> None:
